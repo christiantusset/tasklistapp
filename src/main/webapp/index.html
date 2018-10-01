@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html ng-app="tasks">
+
+<head>
+
+    <title>TaskList - Christian</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/png" href="icon/favicon.png"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <style>
+        html
+        { overflow-y:scroll; }
+        body
+        { background-color: #f3f3f3;padding-top:20px; padding-right: 170px; }
+        #tasklist
+        { margin-bottom:40px; }
+        form button
+        { margin-top: 15px; }
+    </style>
+
+</head>
+
+<body ng-app="taskApp" ng-controller="taskController">
+
+    <div class="container">
+
+        <table class="table table-striped">
+
+            <label class="lbtitle" style="font-size: 30px; color: #ffffff;
+                background: #0b630b; border-radius: 10px">&nbsp;TaskList&nbsp;
+                <span class="label label-info" style="font-size: 30px; color: #ffffff;
+                background-color: #000000; border-radius: 10px; border-bottom-left-radius: initial;
+                border-top-left-radius: initial">{{ tasks.length }}</span>
+            </label>
+            &nbsp;
+            <label class="lbtitle">
+                <h2>
+                    <a class="btn icon-btn btn-success" href="#modal-tarefa" ng-click="task ={};transaction = 0"
+                       role="button" data-toggle="modal" class="btn btn-success">
+                        <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"
+                              aria-hidden="true"></span>
+                        Criar Nova Tarefa
+                    </a>
+                </h2>
+            </label>
+
+        </table>
+
+        <div id="tasklist">
+
+            <table class="table table-striped">
+                <tr>
+                    <th>Código</th>
+                    <th>Título</th>
+                    <th>Descrição</th>
+                    <th>Concluído? </th>
+                    <th>Criado</th>
+                    <th>Editado</th>
+                    <th>Finalizado</th>
+                    <th>Ações</th>
+                </tr>
+ 
+                <tr ng-repeat="task in tasks">
+                    <td style="border-color: #229822">{{ task.id}}</td>
+                    <td>{{ task.titulo}}</td>
+                    <td>{{ task.descricao}}</td>
+                    <td ng-show="task.status">Sim</td>
+                    <td ng-show="!task.status">Não</td>
+                    <td>{{ task.dataCriacao}}</td>
+                    <td>{{ task.dataEdicao}}</td>
+                    <td>{{ task.dataFinalizacao}}</td>
+                    <td>
+                        <button href="#modal-tarefa" type="button" class="btn btn-default"
+                            ng-click="editar(task.id)" data-toggle="modal">Editar</button>
+
+                        <a class="btn btn-danger" ng-click="remover(task.id)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                            Remover
+                        </a>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+        <div class="modal fade" id="modal-tarefa" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true" ng-click="limparCriacao()">×</button>
+                        <h3 class="modal-title" id="myModalLabel"> <strong>Tarefa</strong></h3>
+
+                    </div>
+
+                    <div class="modal-body" style="padding-top: inherit; padding-bottom: inherit">
+
+                        <form role="form">
+                            <p>
+                                <div class="input-group">
+                                    <label for="titleId">Título</label>
+                                    <input type="text" class="form-control" id="titleId"
+                                           placeholder="Título da Tarefa"
+                                           ng-model="taskForm.titulo" required="required">
+                                </div>
+                            </p>
+                            <p>
+                                <div class="input-group">
+                                    <label for="descriptionId">Descrição</label>
+                                    <input type="text" class="form-control" id="descriptionId"
+                                           placeholder="Descrição da Tarefa"
+                                           ng-model="taskForm.descricao" required="required">
+                                </div>
+                            </p>
+                            <p>
+                                <div class="input-group">
+                                    <label for="doneId">Tarefa Finalizada?&nbsp;
+                                        <input type="checkbox" id="doneId" ng-model="taskForm.status">
+                                    </label>
+                                </div>
+                            </p>
+                        </form>
+
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal" ng-click="limparCriacao()">Cancelar</button>
+
+                        <a class="btn btn-success" ng-hide="loading" ng-click="salvar()">
+                            <span class="glyphicon glyphicon-ok"></span>
+                            Salvar
+                        </a>
+
+                        <h2 ng-show="loading "><a class="btn btn-info"><i class="glyphicon glyphicon-repeat gly-spin">
+                        </i>Aguarde</a></h2>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-striped">
+            <footer>
+                <p>Criado por: <a href="https://github.com/christiantusset" target="_blank">Christian Tusset</a></p>
+            </footer>
+        </table>
+
+    </div>
+
+    <script src="js/external/jquery.min.js"></script>
+    <script src="js/external/bootstrap.min.js"></script>
+    <script src="js/external/angular.min.js"></script>
+    <script src="js/taskList.js"></script>
+
+</body>
+</html>
