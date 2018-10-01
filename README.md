@@ -5,7 +5,7 @@ App construído seguindo modelo UML, com as tecnologias:
 - Backend em Java.
 - Frontend em AngularJS.
 
-##Previews
+**Previews**
 
 ![ContentRoot](https://github.com/christiantusset/tasklistapp/blob/master/src/main/resources/imagens/1.png)
 ![ContentRoot](https://github.com/christiantusset/tasklistapp/blob/master/src/main/resources/imagens/2.png)
