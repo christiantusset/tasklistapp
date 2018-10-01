@@ -18,13 +18,13 @@ Expor serviço Web **HTTP** no Estilo REST
 - http://localhost:8080/
 
 #### Level 1
-Expor recurso com URI utilizando**HTTP** para retornar Tarefa(s)
+Expor recurso com URI utilizando **HTTP** para retornar Tarefa(s)
 
 - GET - http://localhost:8080/tarefas
 - GET - http://localhost:8080/tarefa/{id}
 
 #### Level 2
-Expor recursos com URI com os restantes **métodos HTTP** utilizados
+Expor recursos com URI com os restantes **métodos HTTP**
 
 - POST - http://localhost:8080/salvar
 - PUT - http://localhost:8080/atualizar/{id}
